@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" width="300" height="200">
+  <!-- Case file folder -->
+  <defs>
+    <linearGradient id="folderGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e5d5b7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d4c5a9;stop-opacity:1" />
+    </linearGradient>
+    <filter id="paper-texture">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
+      <feColorMatrix in="noise" type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="discrete" tableValues="0 0 0 0 0 1 1"/>
+      </feComponentTransfer>
+      <feBlend in="SourceGraphic" in2="noise" mode="multiply"/>
+    </filter>
+  </defs>
+  
+  <!-- Folder back -->
+  <rect x="20" y="50" width="260" height="140" rx="3" 
+        fill="url(#folderGradient)" stroke="#8b7355" stroke-width="2" 
+        filter="url(#paper-texture)"/>
+  
+  <!-- Folder tab -->
+  <path d="M 20 50 L 20 30 L 120 30 L 130 50 Z" 
+        fill="#e5d5b7" stroke="#8b7355" stroke-width="2" 
+        filter="url(#paper-texture)"/>
+  
+  <!-- Tab label -->
+  <rect x="25" y="33" width="90" height="14" fill="#dc2626" opacity="0.8"/>
+  <text x="70" y="43" font-family="monospace" font-size="10" font-weight="bold" 
+        text-anchor="middle" fill="white">CLASSIFIED</text>
+  
+  <!-- Lines on folder -->
+  <line x1="40" y1="80" x2="260" y2="80" stroke="#8b7355" stroke-width="1" opacity="0.3"/>
+  <line x1="40" y1="100" x2="260" y2="100" stroke="#8b7355" stroke-width="1" opacity="0.3"/>
+  <line x1="40" y1="120" x2="260" y2="120" stroke="#8b7355" stroke-width="1" opacity="0.3"/>
+  <line x1="40" y1="140" x2="260" y2="140" stroke="#8b7355" stroke-width="1" opacity="0.3"/>
+  
+  <!-- Red stamp -->
+  <circle cx="230" cy="160" r="25" fill="none" stroke="#dc2626" stroke-width="3" opacity="0.7"/>
+  <text x="230" y="157" font-family="Arial" font-size="10" font-weight="bold" 
+        text-anchor="middle" fill="#dc2626" opacity="0.7">TOP</text>
+  <text x="230" y="168" font-family="Arial" font-size="10" font-weight="bold" 
+        text-anchor="middle" fill="#dc2626" opacity="0.7">SECRET</text>
+</svg>

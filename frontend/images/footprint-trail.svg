@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 400" width="200" height="400">
+  <!-- Footprint trail pattern -->
+  <defs>
+    <!-- Left footprint -->
+    <g id="left-foot">
+      <!-- Sole -->
+      <ellipse cx="30" cy="20" rx="18" ry="28" fill="#1e1e1e" opacity="0.15"/>
+      <!-- Heel -->
+      <ellipse cx="30" cy="35" rx="12" ry="10" fill="#1e1e1e" opacity="0.15"/>
+      <!-- Toes -->
+      <ellipse cx="25" cy="8" rx="4" ry="5" fill="#1e1e1e" opacity="0.15"/>
+      <ellipse cx="30" cy="5" rx="4" ry="5" fill="#1e1e1e" opacity="0.15"/>
+      <ellipse cx="35" cy="6" rx="4" ry="5" fill="#1e1e1e" opacity="0.15"/>
+      <ellipse cx="40" cy="8" rx="3" ry="4" fill="#1e1e1e" opacity="0.15"/>
+      <ellipse cx="43" cy="11" rx="3" ry="4" fill="#1e1e1e" opacity="0.15"/>
+    </g>
+    
+    <!-- Right footprint (mirrored) -->
+    <g id="right-foot">
+      <!-- Sole -->
+      <ellipse cx="70" cy="20" rx="18" ry="28" fill="#1e1e1e" opacity="0.15"/>
+      <!-- Heel -->
+      <ellipse cx="70" cy="35" rx="12" ry="10" fill="#1e1e1e" opacity="0.15"/>
+      <!-- Toes -->
+      <ellipse cx="75" cy="8" rx="4" ry="5" fill="#1e1e1e" opacity="0.15"/>
+      <ellipse cx="70" cy="5" rx="4" ry="5" fill="#1e1e1e" opacity="0.15"/>
+      <ellipse cx="65" cy="6" rx="4" ry="5" fill="#1e1e1e" opacity="0.15"/>
+      <ellipse cx="60" cy="8" rx="3" ry="4" fill="#1e1e1e" opacity="0.15"/>
+      <ellipse cx="57" cy="11" rx="3" ry="4" fill="#1e1e1e" opacity="0.15"/>
+    </g>
+  </defs>
+  
+  <!-- Trail going up the page -->
+  <use href="#right-foot" x="40" y="0" transform="rotate(-10 90 20)"/>
+  <use href="#left-foot" x="0" y="70" transform="rotate(5 30 90)"/>
+  <use href="#right-foot" x="40" y="140" transform="rotate(-8 90 160)"/>
+  <use href="#left-foot" x="0" y="210" transform="rotate(7 30 230)"/>
+  <use href="#right-foot" x="40" y="280" transform="rotate(-12 90 300)"/>
+  <use href="#left-foot" x="0" y="350" transform="rotate(6 30 370)"/>
+</svg>

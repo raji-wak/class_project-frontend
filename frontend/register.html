@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>New Recruit Registration</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="auth-shell">
+    <div class="auth-grid">
+      <div class="auth-panel">
+        <div style="text-align: center; margin-bottom: 1rem;">
+          <img src="images/detective-badge.svg" alt="Detective Badge" style="width: 80px; height: 80px; opacity: 0.9; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));">
+        </div>
+        <h1>Recruit Registration</h1>
+        <p class="subtitle">Join the detective bureau.</p>
+
+        <label for="regEmail">Bureau Email</label>
+        <input id="regEmail" type="email" placeholder="detective@bureau.gov">
+
+        <label for="regUsername">Assigned Codename</label>
+        <input id="regUsername" placeholder="Choose a unique codename">
+
+        <label for="regPassword">Secret Key</label>
+        <input id="regPassword" type="password" placeholder="Create a secret key">
+
+        <div style="margin-top: 6px; display: flex; gap: 10px; flex-wrap: wrap">
+          <button onclick="register()">
+            <span>Submit Application</span>
+          </button>
+          <button class="btn-secondary" onclick="window.location='index.html'">
+            <span>Back to Login</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="detective-card">
+        <div class="detective-tag">
+          <span>Classified Access</span>
+        </div>
+
+        <div class="detective-illustration">
+          <img src="images/detective-board.svg" alt="Detective Board" style="width: 100%; max-width: 300px; opacity: 0.85;">
+        </div>
+
+        <p class="detective-caption">
+          All recruits must verify their identity via email before accessing the case files.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

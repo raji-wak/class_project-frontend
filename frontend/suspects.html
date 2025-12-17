@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Suspect Database</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-badge"></div>
+    <h2>DETECTIVE BUREAU</h2>
+    <div class="nav-links">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="cases.html">Cases</a>
+      <a href="suspects.html">Suspects</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+      <img src="images/magnifying-glass.svg" alt="Investigation" style="width: 80px; height: 80px; opacity: 0.8;">
+      <div>
+        <h1 style="margin: 0;">Suspect Database</h1>
+        <p class="subtitle" style="margin: 0.5rem 0 0 0;">Persons of interest under investigation.</p>
+      </div>
+    </div>
+
+    <button onclick="window.location='add-suspect.html'">▸ Register New Suspect</button>
+
+    <div class="list-container">
+      <h2 class="evidence-label">Known Suspects</h2>
+      <ul id="suspects-list" class="evidence-list"></ul>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      loadSuspects();
+    });
+  </script>
+</body>
+</html>

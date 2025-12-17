@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add Case</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body onload="requireAuth()">
+    <div class="navbar">
+      <h1>Detective App</h1>
+      <div class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="suspects.html">Suspects</a>
+        <a href="cases.html">Cases</a>
+        <a href="#" onclick="logout()">Logout</a>
+      </div>
+    </div>
+
+    <div class="container">
+      <h2>Add Case</h2>
+      <p class="subtitle">Create a new investigation record.</p>
+
+      <input id="title" placeholder="Case title" />
+      <textarea id="description" placeholder="Case description"></textarea>
+
+      <button onclick="submitCase()">Save Case</button>
+      <button class="btn-secondary" onclick="window.location='cases.html'">
+        Cancel
+      </button>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+      async function submitCase() {
+        const title = document.getElementById("title").value.trim();
+        const description = document.getElementById("description").value.trim();
+
+        if (!title) {
+          alert("Title is required.");
+          return;
+        }
+
+        try {
+          await authSend("/cases", "POST", { title, description });
+          window.location = "cases.html";
+        } catch (err) {
+          console.error(err);
+          alert("Failed to add case.");
+        }
+      }
+    </script>
+  </body>
+</html>

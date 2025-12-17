@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Case Details</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body onload="initCaseDetails()">
+    <div class="navbar">
+      <h1>Detective App</h1>
+      <div class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="suspects.html">Suspects</a>
+        <a href="cases.html">Cases</a>
+        <a href="#" onclick="logout()">Logout</a>
+      </div>
+    </div>
+
+    <div class="container">
+      <h2 id="caseTitle">Case</h2>
+      <p class="subtitle" id="caseDescription"></p>
+
+      <div class="row">
+        <div class="col">
+          <h3>Evidence</h3>
+          <ul id="evidenceList" class="list"></ul>
+
+          <input id="evidenceText" placeholder="New evidence description" />
+          <button onclick="addEvidence()">Add Evidence</button>
+        </div>
+
+        <div class="col">
+          <h3>Witness Statements</h3>
+          <ul id="witnessList" class="list"></ul>
+
+          <input id="witnessName" placeholder="Witness name" />
+          <textarea
+            id="witnessStatement"
+            placeholder="Witness statement"
+          ></textarea>
+          <button onclick="addWitness()">Add Witness</button>
+        </div>
+      </div>
+
+      <button
+        class="btn-secondary"
+        style="margin-top: 20px"
+        onclick="window.location='cases.html'"
+      >
+        Back to cases
+      </button>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+      function getCaseId() {
+        return new URLSearchParams(window.location.search).get("id");
+      }
+
+      async function initCaseDetails() {
+        requireAuth();
+        await loadCase();
+      }
+
+      async function loadCase() {
+        const id = getCaseId();
+        if (!id) {
+          alert("Missing case ID.");
+          window.location = "cases.html";
+          return;
+        }
+
+        try {
+          const c = await authGet(`/cases/${id}`);
+          document.getElementById("caseTitle").innerText = c.title;
+          document.getElementById("caseDescription").innerText =
+            c.description || "";
+
+          const evidenceList = document.getElementById("evidenceList");
+          const witnessList = document.getElementById("witnessList");
+
+          evidenceList.innerHTML = "";
+          (c.evidence || []).forEach((e) => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+            <div>${e.description}</div>
+            <button class="btn-danger" onclick="deleteEvidence('${e._id}')">Delete</button>
+          `;
+            evidenceList.appendChild(li);
+          });
+
+          witnessList.innerHTML = "";
+          (c.witnessStatements || []).forEach((w) => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+            <div>
+              <strong>${w.name}:</strong> ${w.statement}
+            </div>
+            <button class="btn-danger" onclick="deleteWitness('${w._id}')">Delete</button>
+          `;
+            witnessList.appendChild(li);
+          });
+        } catch (err) {
+          console.error(err);
+          alert("Failed to load case.");
+        }
+      }
+
+      async function addEvidence() {
+        const id = getCaseId();
+        const text = document.getElementById("evidenceText").value.trim();
+        if (!text) return;
+
+        try {
+          await authSend(`/cases/${id}/evidence`, "POST", {
+            description: text,
+          });
+          document.getElementById("evidenceText").value = "";
+          loadCase();
+        } catch (err) {
+          console.error(err);
+          alert("Failed to add evidence.");
+        }
+      }
+
+      async function deleteEvidence(evidenceId) {
+        const id = getCaseId();
+        if (!confirm("Delete this evidence item?")) return;
+
+        try {
+          await authSend(`/cases/${id}/evidence/${evidenceId}`, "DELETE");
+          loadCase();
+        } catch (err) {
+          console.error(err);
+          alert("Failed to delete evidence.");
+        }
+      }
+
+      async function addWitness() {
+        const id = getCaseId();
+        const name = document.getElementById("witnessName").value.trim();
+        const statement = document
+          .getElementById("witnessStatement")
+          .value.trim();
+        if (!name || !statement) return;
+
+        try {
+          await authSend(`/cases/${id}/witness`, "POST", {
+            name,
+            statement,
+          });
+          document.getElementById("witnessName").value = "";
+          document.getElementById("witnessStatement").value = "";
+          loadCase();
+        } catch (err) {
+          console.error(err);
+          alert("Failed to add witness.");
+        }
+      }
+
+      async function deleteWitness(witnessId) {
+        const id = getCaseId();
+        if (!confirm("Delete this witness statement?")) return;
+
+        try {
+          await authSend(`/cases/${id}/witness/${witnessId}`, "DELETE");
+          loadCase();
+        } catch (err) {
+          console.error(err);
+          alert("Failed to delete witness.");
+        }
+      }
+    </script>
+  </body>
+</html>

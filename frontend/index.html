@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Detective Bureau Login</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="auth-shell">
+      <div class="auth-grid">
+        <!-- LEFT: login form -->
+        <div class="auth-panel">
+          <div style="text-align: center; margin-bottom: 1rem;">
+            <img src="images/detective-badge.svg" alt="Detective Badge" style="width: 80px; height: 80px; opacity: 0.9; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));">
+          </div>
+          <h1>Detective Bureau</h1>
+          <p class="subtitle">Log in to your investigation desk.</p>
+
+          <label for="username">Codename</label>
+          <input id="username" placeholder="Enter your codename" />
+
+          <label for="password">Secret key</label>
+          <input
+            id="password"
+            type="password"
+            placeholder="Enter your secret key"
+          />
+
+          <div
+            style="margin-top: 6px; display: flex; gap: 10px; flex-wrap: wrap"
+          >
+            <button onclick="login()">
+              <span>Enter Headquarters</span>
+            </button>
+            <button
+              class="btn-secondary"
+              onclick="window.location='verify.html'"
+            >
+              <span>New Recruit?</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- RIGHT: detective illustration & flavor -->
+        <div class="detective-card">
+          <div class="detective-tag">
+            <span>Caseboard Online</span>
+          </div>
+
+          <div class="detective-illustration">
+            <img src="images/magnifying-glass.svg" alt="Magnifying Glass" style="width: 150px; height: 150px; opacity: 0.85;">
+          </div>
+
+          <p class="detective-caption">
+            Every login is a new case. Keep your credentials classified,
+            detective.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

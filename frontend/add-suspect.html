@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add Suspect</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body onload="requireAuth()">
+    <div class="navbar">
+      <h1>Detective App</h1>
+      <div class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="suspects.html">Suspects</a>
+        <a href="cases.html">Cases</a>
+        <a href="#" onclick="logout()">Logout</a>
+      </div>
+    </div>
+
+    <div class="container">
+      <h2>Add Suspect</h2>
+      <p class="subtitle">Register a new person of interest.</p>
+
+      <input id="name" placeholder="Name" />
+      <input
+        id="dangerLevel"
+        type="number"
+        min="1"
+        max="10"
+        placeholder="Danger level (1–10)"
+      />
+      <textarea id="notes" placeholder="Notes"></textarea>
+
+      <button onclick="submitSuspect()">Save Suspect</button>
+      <button class="btn-secondary" onclick="window.location='suspects.html'">
+        Cancel
+      </button>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+      async function submitSuspect() {
+        const name = document.getElementById("name").value.trim();
+        const dangerLevel = document.getElementById("dangerLevel").value;
+        const notes = document.getElementById("notes").value.trim();
+
+        if (!name) {
+          alert("Name is required.");
+          return;
+        }
+
+        try {
+          await authSend("/suspects", "POST", {
+            name,
+            dangerLevel: dangerLevel ? Number(dangerLevel) : undefined,
+            notes,
+          });
+          window.location = "suspects.html";
+        } catch (err) {
+          console.error(err);
+          alert("Failed to add suspect.");
+        }
+      }
+    </script>
+  </body>
+</html>

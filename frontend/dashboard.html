@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Detective Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-badge"></div>
+    <h2>DETECTIVE BUREAU</h2>
+    <div class="nav-links">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="cases.html">Cases</a>
+      <a href="suspects.html">Suspects</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div style="text-align: center; margin: 2rem 0;">
+      <img src="images/detective-board.svg" alt="Detective Investigation Board" style="width: 100%; max-width: 500px; opacity: 0.9; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.4));">
+    </div>
+    
+    <h1>Investigation Hub</h1>
+    <p class="subtitle">Central command for all active operations.</p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+      <div class="case-file-card">
+        <img src="images/case-file.svg" alt="Case Files" style="width: 120px; height: 80px; margin: 0 auto; display: block; opacity: 0.8;">
+        <h3 style="text-align: center; margin-top: 1rem;">Case Files</h3>
+        <p style="text-align: center; font-size: 0.9rem; opacity: 0.8;">Access active investigations</p>
+        <button onclick="window.location='cases.html'" style="width: 100%; margin-top: 1rem;">View Cases</button>
+      </div>
+
+      <div class="case-file-card">
+        <img src="images/magnifying-glass.svg" alt="Suspects" style="width: 120px; height: 120px; margin: 0 auto; display: block; opacity: 0.8;">
+        <h3 style="text-align: center; margin-top: 1rem;">Suspect Database</h3>
+        <p style="text-align: center; font-size: 0.9rem; opacity: 0.8;">Review persons of interest</p>
+        <button onclick="window.location='suspects.html'" style="width: 100%; margin-top: 1rem;">View Suspects</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

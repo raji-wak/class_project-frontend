@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 100" width="150" height="100">
+  <!-- Evidence tag -->
+  <defs>
+    <filter id="tag-shadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="2" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  
+  <!-- String/wire -->
+  <line x1="75" y1="0" x2="75" y2="25" stroke="#8b7355" stroke-width="2"/>
+  
+  <!-- Tag body -->
+  <path d="M 20 25 L 130 25 L 130 85 L 80 85 L 75 95 L 70 85 L 20 85 Z" 
+        fill="#ffd700" stroke="#1e1e1e" stroke-width="2" filter="url(#tag-shadow)"/>
+  
+  <!-- Text -->
+  <text x="75" y="50" font-family="'Special Elite', monospace" font-size="16" font-weight="bold" 
+        text-anchor="middle" fill="#1e1e1e">
+    EVIDENCE
+  </text>
+  <text x="75" y="70" font-family="'Special Elite', monospace" font-size="12" 
+        text-anchor="middle" fill="#1e1e1e">
+    #A-4792
+  </text>
+</svg>

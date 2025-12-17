@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Suspect Details</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body onload="initSuspectDetails()">
+    <div class="navbar">
+      <h1>Detective App</h1>
+      <div class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="suspects.html">Suspects</a>
+        <a href="cases.html">Cases</a>
+        <a href="#" onclick="logout()">Logout</a>
+      </div>
+    </div>
+
+    <div class="container">
+      <h2 id="suspectName">Suspect</h2>
+      <p class="subtitle" id="suspectDanger"></p>
+      <p id="suspectNotes"></p>
+
+      <button class="btn-secondary" onclick="window.location='suspects.html'">
+        Back to list
+      </button>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+      function getQueryId() {
+        return new URLSearchParams(window.location.search).get("id");
+      }
+
+      async function initSuspectDetails() {
+        requireAuth();
+        const id = getQueryId();
+        if (!id) {
+          alert("Missing suspect ID.");
+          window.location = "suspects.html";
+          return;
+        }
+
+        try {
+          const s = await authGet(`/suspects/${id}`);
+          document.getElementById("suspectName").innerText = s.name;
+          document.getElementById("suspectDanger").innerText =
+            "Danger level: " + (s.dangerLevel ?? "N/A");
+          document.getElementById("suspectNotes").innerText =
+            s.notes || "No notes.";
+        } catch (err) {
+          console.error(err);
+          alert("Failed to load suspect.");
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Detective Verification</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="auth-shell">
+      <div class="auth-grid">
+        <!-- LEFT: challenge -->
+        <div class="auth-panel">
+          <h1>Detective Challenge</h1>
+          <p class="subtitle">
+            Before we issue a badge… a simple test of observation.
+          </p>
+
+          <label for="detectiveAnswer">What is the color of the sky?</label>
+          <input id="detectiveAnswer" placeholder="Type your answer here" />
+
+          <button onclick="verifyDetective()">
+            <span>Submit Answer</span>
+          </button>
+          <button
+            class="btn-secondary"
+            style="margin-left: 8px"
+            onclick="window.location='index.html'"
+          >
+            <span>Back to Login</span>
+          </button>
+
+          <p id="verifyMessage" class="subtitle" style="margin-top: 16px"></p>
+        </div>
+
+        <!-- RIGHT: cartoon-ish “interrogation room” -->
+        <div class="detective-card">
+          <div class="detective-tag">
+            <span>Recruit Screening</span>
+          </div>
+
+          <div class="detective-illustration">
+            <!-- You can later swap this whole block for an <img> of a cartoon detective -->
+            <div class="detective-figure" style="left: 36px"></div>
+            <div class="magnifier" style="right: 40px; bottom: 40px">
+              <span>truth</span>
+            </div>
+          </div>
+
+          <p class="detective-caption">
+            Real detectives notice the obvious first. Get this right and we’ll
+            let you into the bureau.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+      function verifyDetective() {
+        const answer = document
+          .getElementById("detectiveAnswer")
+          .value.trim()
+          .toLowerCase();
+        const message = document.getElementById("verifyMessage");
+
+        if (!answer) {
+          message.style.color = "#f97373";
+          message.innerText = "At least guess, detective.";
+          return;
+        }
+
+        if (answer === "blue") {
+          message.style.color = "#4ade80";
+          message.innerText = "You're a good detective. Badge approved.";
+          setTimeout(() => {
+            window.location = "register.html";
+          }, 1200);
+        } else {
+          message.style.color = "#f97373";
+          message.innerText =
+            "Hmm… that doesn't sound right. Try again, detective.";
+        }
+      }
+    </script>
+  </body>
+</html>
